@@ -300,7 +300,7 @@
   // The CSS var(--ind-color) needs numeric parts for rgba usage
   // We set icon wrap backgrounds inline for simplicity
   document.querySelectorAll('.industry-card').forEach(card => {
-    const color = card.style.getPropertyValue('--ind-color') || '#FF7A00';
+    const color = card.style.getPropertyValue('--ind-color') || '#B87333';
     const iconWrap = card.querySelector('.industry-icon-wrap');
     if (iconWrap) {
       iconWrap.style.background = color + '18';
@@ -309,7 +309,7 @@
 
   /* ---- PRODUCT CARD HOVER EFFECT ---- */
   document.querySelectorAll('.product-card').forEach(card => {
-    const color = card.dataset.color || '#FF7A00';
+    const color = card.dataset.color || '#B87333';
     card.addEventListener('mouseenter', () => {
       card.style.borderColor = color + '60';
     });
