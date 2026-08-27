@@ -551,36 +551,191 @@
       </div>
     </div>
     <div class="mfg-visual reveal-right">
-      <!-- Stylised factory visual using CSS/SVG -->
-      <div class="factory-visual">
-        <div class="factory-lines">
-          <div class="factory-conveyor">
-            <div class="conveyor-track"></div>
-            <div class="conveyor-boxes">
-              <div class="conv-box conv-box-1"></div>
-              <div class="conv-box conv-box-2"></div>
-              <div class="conv-box conv-box-3"></div>
-            </div>
-          </div>
-          <div class="factory-stat-badge factory-stat-1">
-            <span class="factory-stat-val">5M+</span>
-            <span class="factory-stat-label">Boxes/Month</span>
-          </div>
-          <div class="factory-stat-badge factory-stat-2">
-            <span class="factory-stat-val">99.8%</span>
-            <span class="factory-stat-label">Pass Rate</span>
-          </div>
+      <div class="factory-flow-graphic">
+
+        <!-- Stat badges -->
+        <div class="ffg-badge ffg-badge-1">
+          <span class="ffg-val">5M+</span>
+          <span class="ffg-lbl">Boxes / Month</span>
         </div>
-        <!-- Replace this div's background-image with a real factory photo when available -->
-        <div class="factory-img-placeholder">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" opacity="0.3">
-            <path d="M10 60V35l20-15 20 15v25H10z" stroke="white" stroke-width="2" fill="none"/>
-            <path d="M50 60V40l20-10v30H50z" stroke="white" stroke-width="2" fill="none"/>
-            <path d="M20 60V45h10v15H20zM35 60V45h10v15H35z" stroke="white" stroke-width="1.5" fill="none"/>
-            <path d="M5 60h70" stroke="white" stroke-width="2"/>
-          </svg>
-          <p>Factory photography placeholder<br><small>Replace with real Nivaan facility images</small></p>
+        <div class="ffg-badge ffg-badge-2">
+          <span class="ffg-val">99.8%</span>
+          <span class="ffg-lbl">Quality Pass Rate</span>
         </div>
+
+        <svg class="factory-svg" viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Factory process flow diagram">
+          <defs>
+            <!-- Blueprint dot grid -->
+            <pattern id="fg-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.06)"/>
+            </pattern>
+            <!-- Glow filter -->
+            <filter id="fg-glow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- The flow path for animateMotion -->
+            <path id="fp" d="M 65 80 L 200 80 L 335 80 L 335 200 L 200 200 L 65 200 L 65 320 L 200 320"/>
+          </defs>
+
+          <!-- Background -->
+          <rect width="400" height="420" rx="20" fill="rgba(255,255,255,0.03)"/>
+          <rect width="400" height="420" rx="20" fill="url(#fg-grid)"/>
+
+          <!-- ── FLOW PATH (dashed ghost) ── -->
+          <path d="M 65 80 L 335 80 L 335 200 L 65 200 L 65 320 L 200 320"
+                stroke="rgba(184,115,51,0.2)" stroke-width="2" stroke-dasharray="6 5"
+                stroke-linecap="round" fill="none"/>
+          <!-- Flow path (animated draw) -->
+          <path d="M 65 80 L 335 80 L 335 200 L 65 200 L 65 320 L 200 320"
+                stroke="#B87333" stroke-width="2" fill="none" stroke-linecap="round"
+                class="ffg-path-draw" opacity="0.5"/>
+
+          <!-- ── DIRECTION ARROWS ── -->
+          <!-- Row 1 right arrow -->
+          <path d="M 155 73 L 162 80 L 155 87" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 285 73 L 292 80 L 285 87" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Descend right side -->
+          <path d="M 328 148 L 335 155 L 342 148" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Row 2 left arrows -->
+          <path d="M 245 193 L 238 200 L 245 207" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 115 193 L 108 200 L 115 207" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Descend left side -->
+          <path d="M 58 268 L 65 275 L 72 268" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Row 3 right arrow -->
+          <path d="M 125 313 L 132 320 L 125 327" stroke="rgba(184,115,51,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- ══════════════════════════════════
+               STATION 01 — PAPER  (65, 80)
+               ══════════════════════════════════ -->
+          <g transform="translate(65,80)">
+            <circle r="30" fill="rgba(184,115,51,0.1)" stroke="#B87333" stroke-width="1.5"/>
+            <!-- paper roll icon -->
+            <ellipse cx="0" cy="3" rx="11" ry="15" stroke="#B87333" stroke-width="1.5" fill="rgba(184,115,51,0.15)"/>
+            <line x1="-11" y1="3" x2="11" y2="3" stroke="#B87333" stroke-width="1" opacity="0.6"/>
+            <line x1="-11" y1="7" x2="11" y2="7" stroke="#B87333" stroke-width="1" opacity="0.4"/>
+            <circle cx="0" cy="3" r="3" stroke="#B87333" stroke-width="1" fill="rgba(184,115,51,0.3)"/>
+            <!-- label -->
+            <text y="52" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-weight="700" font-family="'Plus Jakarta Sans',system-ui">PAPER</text>
+            <text y="63" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7.5" font-family="'Plus Jakarta Sans',system-ui">Raw Material</text>
+            <text x="22" y="-22" fill="#B87333" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">01</text>
+          </g>
+
+          <!-- ══════════════════════════════════
+               STATION 02 — CORRUGATING  (200, 80)
+               ══════════════════════════════════ -->
+          <g transform="translate(200,80)">
+            <circle r="30" fill="rgba(23,105,255,0.1)" stroke="#1769FF" stroke-width="1.5"/>
+            <!-- wave / flute icon -->
+            <path d="M -16 0 C -11 -10 -6 10 0 0 C 6 -10 11 10 16 0" stroke="#1769FF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <line x1="-16" y1="8" x2="16" y2="8" stroke="#1769FF" stroke-width="1" opacity="0.4" stroke-dasharray="3 2"/>
+            <line x1="-16" y1="-8" x2="16" y2="-8" stroke="#1769FF" stroke-width="1" opacity="0.4" stroke-dasharray="3 2"/>
+            <text y="52" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-weight="700" font-family="'Plus Jakarta Sans',system-ui">CORRUGATING</text>
+            <text y="63" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7.5" font-family="'Plus Jakarta Sans',system-ui">Flute Formation</text>
+            <text x="22" y="-22" fill="#1769FF" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">02</text>
+          </g>
+
+          <!-- ══════════════════════════════════
+               STATION 03 — LAMINATION  (335, 80)
+               ══════════════════════════════════ -->
+          <g transform="translate(335,80)">
+            <circle r="30" fill="rgba(56,184,107,0.1)" stroke="#38B86B" stroke-width="1.5"/>
+            <!-- layers icon -->
+            <rect x="-14" y="-10" width="28" height="6" rx="1.5" stroke="#38B86B" stroke-width="1.5" fill="rgba(56,184,107,0.2)"/>
+            <path d="M -14 0 C -9 -5 -4 5 0 0 C 4 -5 9 5 14 0" stroke="#38B86B" stroke-width="1.5" fill="none"/>
+            <rect x="-14" y="4" width="28" height="6" rx="1.5" stroke="#38B86B" stroke-width="1.5" fill="rgba(56,184,107,0.2)"/>
+            <text y="52" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-weight="700" font-family="'Plus Jakarta Sans',system-ui">LAMINATION</text>
+            <text y="63" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7.5" font-family="'Plus Jakarta Sans',system-ui">Board Bonding</text>
+            <text x="22" y="-22" fill="#38B86B" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">03</text>
+          </g>
+
+          <!-- ══════════════════════════════════
+               STATION 04 — PRINTING  (335, 200)
+               ══════════════════════════════════ -->
+          <g transform="translate(335,200)">
+            <circle r="30" fill="rgba(255,212,59,0.1)" stroke="#FFD43B" stroke-width="1.5"/>
+            <!-- printer icon -->
+            <rect x="-14" y="-6" width="28" height="16" rx="3" stroke="#FFD43B" stroke-width="1.5" fill="rgba(255,212,59,0.1)"/>
+            <rect x="-8" y="-13" width="16" height="7" rx="1" stroke="#FFD43B" stroke-width="1.5" fill="rgba(255,212,59,0.15)"/>
+            <line x1="-8" y1="3" x2="8" y2="3" stroke="#FFD43B" stroke-width="1.2"/>
+            <line x1="-8" y1="6" x2="4" y2="6" stroke="#FFD43B" stroke-width="1.2"/>
+            <circle cx="9" cy="-1" r="3" fill="rgba(255,212,59,0.3)" stroke="#FFD43B" stroke-width="1"/>
+            <text y="52" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-weight="700" font-family="'Plus Jakarta Sans',system-ui">PRINTING</text>
+            <text y="63" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7.5" font-family="'Plus Jakarta Sans',system-ui">Branding &amp; Info</text>
+            <text x="22" y="-22" fill="#FFD43B" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">04</text>
+          </g>
+
+          <!-- ══════════════════════════════════
+               STATION 05 — DIE CUTTING  (200, 200)
+               ══════════════════════════════════ -->
+          <g transform="translate(200,200)">
+            <circle r="30" fill="rgba(255,98,87,0.1)" stroke="#FF6257" stroke-width="1.5"/>
+            <!-- cutting icon -->
+            <rect x="-14" y="-12" width="28" height="24" rx="2" stroke="#FF6257" stroke-width="1" fill="rgba(255,98,87,0.08)" stroke-dasharray="4 3"/>
+            <path d="M -12 -10 L 12 10" stroke="#FF6257" stroke-width="2" stroke-linecap="round"/>
+            <path d="M -12 10 L 12 -10" stroke="#FF6257" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="-14" cy="-12" r="3.5" stroke="#FF6257" stroke-width="1.5" fill="none"/>
+            <circle cx="14" cy="-12" r="3.5" stroke="#FF6257" stroke-width="1.5" fill="none"/>
+            <text y="52" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-weight="700" font-family="'Plus Jakarta Sans',system-ui">DIE CUTTING</text>
+            <text y="63" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7.5" font-family="'Plus Jakarta Sans',system-ui">Precision Cutting</text>
+            <text x="22" y="-22" fill="#FF6257" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">05</text>
+          </g>
+
+          <!-- ══════════════════════════════════
+               STATION 06 — FOLDING  (65, 200)
+               ══════════════════════════════════ -->
+          <g transform="translate(65,200)">
+            <circle r="30" fill="rgba(217,179,130,0.12)" stroke="#D9B382" stroke-width="1.5"/>
+            <!-- fold icon -->
+            <rect x="-14" y="-10" width="28" height="20" rx="2" stroke="#D9B382" stroke-width="1.5" fill="rgba(217,179,130,0.1)"/>
+            <line x1="0" y1="-10" x2="0" y2="10" stroke="#D9B382" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <path d="M 4 -6 L 14 0 L 4 6" stroke="#D9B382" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text y="52" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-weight="700" font-family="'Plus Jakarta Sans',system-ui">FOLDING</text>
+            <text y="63" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7.5" font-family="'Plus Jakarta Sans',system-ui">Box Forming</text>
+            <text x="22" y="-22" fill="#D9B382" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">06</text>
+          </g>
+
+          <!-- ══════════════════════════════════
+               STATION 07 — FINISHED BOX  (200, 320)
+               ══════════════════════════════════ -->
+          <g transform="translate(200,320)">
+            <!-- pulsing outer ring -->
+            <circle r="36" fill="rgba(184,115,51,0.07)" stroke="#B87333" stroke-width="1" stroke-dasharray="4 4" class="ffg-pulse-ring"/>
+            <circle r="30" fill="rgba(184,115,51,0.14)" stroke="#B87333" stroke-width="2" filter="url(#fg-glow)"/>
+            <!-- box icon -->
+            <rect x="-15" y="-12" width="30" height="24" rx="3" stroke="#B87333" stroke-width="2" fill="rgba(184,115,51,0.2)"/>
+            <line x1="-15" y1="-2" x2="15" y2="-2" stroke="#B87333" stroke-width="1.5"/>
+            <path d="M -6 -12 L -6 -17 L 6 -17 L 6 -12" stroke="#B87333" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- checkmark -->
+            <path d="M -7 5 L -2 10 L 9 -1" stroke="#38B86B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text y="52" text-anchor="middle" fill="white" font-size="10" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">FINISHED BOX</text>
+            <text y="64" text-anchor="middle" fill="#B87333" font-size="8.5" font-weight="600" font-family="'Plus Jakarta Sans',system-ui">Ready for Dispatch ✓</text>
+            <text x="23" y="-26" fill="#38B86B" font-size="8" font-weight="800" font-family="'Plus Jakarta Sans',system-ui">07</text>
+          </g>
+
+          <!-- ── ANIMATED TRAVELING BOXES (animateMotion + mpath) ── -->
+          <!-- Box 1 — kraft brown -->
+          <rect width="14" height="11" rx="2" fill="#B87333" opacity="0.95">
+            <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#fp"/>
+            </animateMotion>
+          </rect>
+          <!-- Box 2 — blue -->
+          <rect width="14" height="11" rx="2" fill="#1769FF" opacity="0.8">
+            <animateMotion dur="7s" begin="2.3s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#fp"/>
+            </animateMotion>
+          </rect>
+          <!-- Box 3 — green -->
+          <rect width="14" height="11" rx="2" fill="#38B86B" opacity="0.8">
+            <animateMotion dur="7s" begin="4.6s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#fp"/>
+            </animateMotion>
+          </rect>
+
+          <!-- ── SECTION TITLE INSIDE SVG ── -->
+          <text x="200" y="395" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-weight="600" letter-spacing="3" font-family="'Plus Jakarta Sans',system-ui">NIVAAN INDUSTRIES · MANUFACTURING FLOW</text>
+        </svg>
       </div>
     </div>
   </div>
