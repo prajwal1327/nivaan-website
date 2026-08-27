@@ -116,6 +116,7 @@
     '3ply': { name: '3-Ply Single Wall', loadFactor: 1.0 },
     '5ply': { name: '5-Ply Double Wall', loadFactor: 1.8 },
     '7ply': { name: '7-Ply Triple Wall', loadFactor: 2.8 },
+    '9ply': { name: '9-Ply Quad Wall',   loadFactor: 4.0 },
   };
   const BASE_LOAD = 200; // kg per m² of base area at 5-ply
 
