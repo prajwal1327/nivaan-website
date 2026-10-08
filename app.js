@@ -234,6 +234,7 @@
   /* ---- QUOTE FORM ---- */
   const quoteForm = document.getElementById('quote-form');
   const WHATSAPP_NUMBER = '919632410505';
+  const SALES_EMAIL = 'sales@nivaanindustries.com';
 
   if (quoteForm) {
     quoteForm.addEventListener('submit', (e) => {
@@ -258,7 +259,19 @@
         details ? `Additional details: ${details}` : ''
       ].filter(Boolean).join('\n');
 
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      const subject = `B2B Packaging Quote Request - ${company}`;
+      const channel = e.submitter?.dataset.channel || 'whatsapp';
+
+      if (channel === 'email') {
+        window.location.href = `mailto:${SALES_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+        return;
+      }
+
+      const encodedMessage = encodeURIComponent(message);
+      const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+      const whatsappUrl = isMobile
+        ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
+        : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     });
   }
