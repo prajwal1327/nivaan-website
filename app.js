@@ -233,35 +233,33 @@
 
   /* ---- QUOTE FORM ---- */
   const quoteForm = document.getElementById('quote-form');
-  const formSuccess = document.getElementById('form-success');
+  const WHATSAPP_NUMBER = '919632410505';
 
   if (quoteForm) {
-    quoteForm.addEventListener('submit', async (e) => {
+    quoteForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = document.getElementById('quote-submit');
-      const btnText = btn?.querySelector('.btn-text');
 
       if (!quoteForm.checkValidity()) {
         quoteForm.reportValidity();
         return;
       }
 
-      if (btn) { btn.disabled = true; }
-      if (btnText) { btnText.textContent = 'SENDING...'; }
+      const company = quoteForm.querySelector('[name="company"]').value.trim();
+      const email = quoteForm.querySelector('[name="email"]').value.trim();
+      const volume = quoteForm.querySelector('[name="volume"]');
+      const useCase = quoteForm.querySelector('[name="use_case"]');
+      const details = quoteForm.querySelector('[name="details"]').value.trim();
+      const message = [
+        'Hello Nivaan Industries, I would like to request a B2B packaging quote.',
+        `Company: ${company}`,
+        `Work email: ${email}`,
+        `Monthly volume: ${volume.selectedOptions[0]?.text || ''}`,
+        `Primary use case: ${useCase.selectedOptions[0]?.text || ''}`,
+        details ? `Additional details: ${details}` : ''
+      ].filter(Boolean).join('\n');
 
-      // Simulate form submission (replace with real endpoint / Cloudflare Worker)
-      await new Promise(r => setTimeout(r, 1200));
-
-      // Hide form, show success
-      quoteForm.style.opacity = '0';
-      quoteForm.style.transition = 'opacity 0.4s';
-      setTimeout(() => {
-        quoteForm.classList.add('hidden');
-        if (formSuccess) {
-          formSuccess.classList.remove('hidden');
-          formSuccess.style.animation = 'fadeIn 0.5s ease';
-        }
-      }, 400);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     });
   }
 
