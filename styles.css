@@ -1470,7 +1470,7 @@ input[type="radio"] { display: none; }
 }
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 @media (max-width: 560px) { .footer-links { grid-template-columns: 1fr 1fr; } }
@@ -1483,6 +1483,7 @@ input[type="radio"] { display: none; }
   margin-bottom: 1rem;
 }
 .footer-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-contact ul { overflow-wrap: anywhere; }
 .footer-col a {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.6);
